@@ -23,14 +23,47 @@ public class CreateAdServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        //sticky forms with errors
+
         User user = (User) request.getSession().getAttribute("user");
-        Ad ad = new Ad(
-            user.getId(),
-            request.getParameter("title"),
-            request.getParameter("description")
-        );
-        DaoFactory.getAdsDao().insert(ad);
-        //  consider changing redirect to /profile until adIndex is setup
-        response.sendRedirect("/ads");
+
+        boolean adFormErrors = request.getParameter("title").isEmpty() || request.getParameter("description").isEmpty();
+
+        if (adFormErrors) {
+            if (request.getParameter("title").isEmpty()) {
+                request.setAttribute("titleMissing", "Title is missing");
+            } else {
+            request.setAttribute("titleEntered", request.getParameter("title"));}
+
+            if (request.getParameter("description").isEmpty()) {
+                request.setAttribute("descriptionMissing", "Description is missing");
+            } else {
+            request.setAttribute("descriptionEntered", request.getParameter("description")); }
+
+            try {
+                request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            }
+
+        } else {
+
+            //creates new ad for current user
+
+            Ad ad = new Ad(
+                    user.getId(),
+                    request.getParameter("title"),
+                    request.getParameter("description")
+            );
+
+            //inserts ad into the database
+
+            DaoFactory.getAdsDao().insert(ad);
+
+
+            //  consider changing redirect to /profile until adIndex is setup
+            response.sendRedirect("/ads");
+        }
     }
 }
