@@ -4,14 +4,12 @@ import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.AdCategory;
 import com.mysql.cj.jdbc.Driver;
 
-import javax.servlet.jsp.jstl.core.Config;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLAdsDao implements Ads {
     private Connection connection = null;
-    private Config config = new Config();
 
     public MySQLAdsDao(Config config) {
         try {
@@ -124,7 +122,7 @@ public class MySQLAdsDao implements Ads {
                 "WHERE ads.title LIKE ?";
 
         PreparedStatement pstmt = connection.prepareStatement(query);
-        pstmt.setString(1, "%" + keyword + "%");
+        pstmt.setString(1, keyword);
         ResultSet rs = pstmt.executeQuery();
         List<Ad> keywordAds = new ArrayList<>();
         while (rs.next()) {
@@ -135,6 +133,8 @@ public class MySQLAdsDao implements Ads {
                     rs.getString("title"),
                     rs.getString("description"),
                     rs.getString("category"),
+                    rs.getString("dateCreated")
+//        **  NOTE:**   not sure if we need a created date but added as a placeholder.
             );
 //            check on method for keywordAds//nvm-i need .add for adding to the list.
             keywordAds.add(newAd);
