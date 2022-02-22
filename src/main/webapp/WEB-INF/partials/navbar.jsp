@@ -42,7 +42,7 @@
             </ul>
             <span class="navbar-text">
                 <ul class="navbar-nav mr-auto">
-                    <form class="form-inline my-2 my-lg-0" action="/keywordAds" method="POST">
+                    <form class="form-inline my-2 my-lg-0" action="/searchAds" method="POST">
                              <%--      <input class="btn btn-outline-danger my 2 my-sm-0" type="submit">--%>
                             <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search for ad" aria-label="Search">
 <%--                                                <a href="/searchAds"></a>--%>
@@ -83,8 +83,8 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/login">Login</a></li>
-                            <li><a class="dropdown-item" href="/register">Register</a></li>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/login">Login</a></li>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/register">Register</a></li>
                         </ul>
                         </c:otherwise>
                     </c:choose>
