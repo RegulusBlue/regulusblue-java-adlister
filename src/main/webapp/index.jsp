@@ -26,9 +26,9 @@
                 <div class="card-body reg">
                     <h5 class="card-title font-weight-bold">Please register.</h5>
                     <p class="card-text">Post your listings here.</p>
-                    <form action="/createAd" method="GET">
+                    <form action="/ads/create" method="GET">
 
-                        <a href="/createAd" class="nav-link btn btn-primary text-light blk" style="background: #d4372b">Add your listing.</a>
+                        <a href="/ads/create" class="nav-link btn btn-primary text-light blk" style="background: #d4372b">Add your listing.</a>
                     </form>
                 </div>
             </div>

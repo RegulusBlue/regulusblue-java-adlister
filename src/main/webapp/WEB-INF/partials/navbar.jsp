@@ -36,7 +36,7 @@
             <%--        <ul class="nav navbar-nav navbar-right">--%>
             <ul class="navbar-nav mr-auto"  >
                 <li class="nav-item active">
-                    <a class="nav-link red-hover w-text" href="/">
+                    <a class="nav-link red-hover w-text" href="/ads">
                         <i class="fa fa-fw fa-home"></i> Home <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
